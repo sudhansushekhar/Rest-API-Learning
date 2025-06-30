@@ -13,11 +13,11 @@ public class DynamicJson {
 	public void addBook(String isbn, String aisle) {
 		RestAssured.baseURI = "http://216.10.245.166";
 		String response = given().header("Content-Type","application/json")
-		.body(Payload.addBook(isbn,aisle))
+				.body(Payload.addBook(isbn,aisle))
 		.when()
-		.post("Library/Addbook.php")
+			.post("Library/Addbook.php")
 		.then().assertThat().statusCode(200)
-		.extract().response().asString();
+			.extract().response().asString();
 		System.out.println("Response :" + response);
 		
 		JsonPath js = ReUsableMethods.rawToJSON(response);
